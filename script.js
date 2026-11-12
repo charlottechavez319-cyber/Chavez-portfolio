@@ -1,0 +1,10 @@
+const menuToggle=document.getElementById('menuToggle');
+const nav=document.getElementById('nav');
+menuToggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));});
+nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');}));
+const filterButtons=document.querySelectorAll('.filter-btn');
+const projectCards=document.querySelectorAll('.project-card');
+filterButtons.forEach(button=>button.addEventListener('click',()=>{filterButtons.forEach(item=>item.classList.remove('active'));button.classList.add('active');const filter=button.dataset.filter;projectCards.forEach(card=>card.classList.toggle('hidden',filter!=='all'&&card.dataset.category!==filter));}));
+document.getElementById('copyEmail').addEventListener('click',async()=>{const email='charlottechavez726@gmail.com';const status=document.getElementById('copyStatus');try{await navigator.clipboard.writeText(email);status.textContent='Email address copied.';}catch(error){status.textContent='Please copy this email: '+email;}});
+document.getElementById('year').textContent=new Date().getFullYear();
+window.addEventListener('scroll',()=>{const total=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('progress').style.width=(total>0?(window.scrollY/total)*100:0)+'%';});
